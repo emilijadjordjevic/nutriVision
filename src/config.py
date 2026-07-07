@@ -3,7 +3,7 @@ from pathlib import Path
 import torch
 
 class Config:
-    SEED: int = 42 
+    SEED: int = 42
 
     IMAGE_SIZE: int = 224
     BATCH_SIZE: int = 32
@@ -14,10 +14,10 @@ class Config:
     TEST_FRAC: float = 0.15
 
     NUM_EPOCHS_A: int = 30
-    LR_A: float = 1e-3 
+    LR_A: float = 1e-3
 
     NUM_EPOCHS_B: int = 15
-    LR_B: float = 3e-5 
+    LR_B: float = 3e-5
     SWIN_CHECKPOINT: str = "microsoft/swin-tiny-patch4-window7-224"
     FREEZE_EPOCHS_B: int = 3
 
