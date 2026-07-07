@@ -2,6 +2,7 @@ from pathlib import Path
 
 import torch
 
+
 class Config:
     SEED: int = 42
 
