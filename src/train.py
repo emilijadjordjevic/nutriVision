@@ -1,4 +1,5 @@
 import csv
+import time
 from pathlib import Path
 
 import matplotlib
@@ -74,9 +75,10 @@ def train(model, train_loader, val_loader, epochs, lr,
 
     with open(csv_path, "w", newline="") as f:
         writer = csv.writer(f)
-        writer.writerow(["epoch", "train_loss", "train_acc", "val_loss", "val_acc", "lr"])
+        writer.writerow(["epoch", "train_loss", "train_acc", "val_loss", "val_acc", "lr", "epoch_time_s"])
 
     for epoch in range(1, epochs + 1):
+        epoch_start = time.time()
         train_loss, train_acc = _run_epoch(
             model, train_loader, criterion, optimizer, device,
             desc=f"Epoch {epoch}/{epochs} [train]",
@@ -92,6 +94,7 @@ def train(model, train_loader, val_loader, epochs, lr,
             scheduler.step(val_loss)
 
         current_lr = optimizer.param_groups[0]["lr"]
+        epoch_time = time.time() - epoch_start
 
         history["train_loss"].append(train_loss)
         history["val_loss"].append(val_loss)
@@ -101,7 +104,8 @@ def train(model, train_loader, val_loader, epochs, lr,
         with open(csv_path, "a", newline="") as f:
             csv.writer(f).writerow(
                 [epoch, f"{train_loss:.4f}", f"{train_acc:.4f}",
-                 f"{val_loss:.4f}", f"{val_acc:.4f}", f"{current_lr:.2e}"]
+                 f"{val_loss:.4f}", f"{val_acc:.4f}", f"{current_lr:.2e}",
+                 f"{epoch_time:.1f}"]
             )
 
         print(f"Epoch {epoch:>3}/{epochs} | "
