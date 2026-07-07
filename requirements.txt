@@ -1,0 +1,15 @@
+torch>=2.0
+torchvision>=0.15
+transformers>=4.40
+datasets>=2.18
+timm>=0.9
+pytorch-grad-cam
+gradio 
+pillow
+numpy
+pandas
+scikit-learn
+matplotlib
+seaborn
+tqdm
+requests
