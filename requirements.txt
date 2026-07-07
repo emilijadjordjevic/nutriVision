@@ -3,8 +3,8 @@ torchvision>=0.15
 transformers>=4.40
 datasets>=2.18
 timm>=0.9
-pytorch-grad-cam
-gradio 
+grad-cam
+gradio
 pillow
 numpy
 pandas
